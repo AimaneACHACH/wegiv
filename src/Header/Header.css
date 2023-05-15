@@ -1,0 +1,38 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    padding: 1em 6em;
+    gap: 2em;
+    height: 6vh;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.4);
+}
+.headerLogo{
+    flex-shrink: 0;
+    flex-basis:15% ;
+}
+.headerSpace{
+    display: flex;
+    justify-content: center;
+    flex-basis:50% ;
+}
+.header > .btn{
+    flex-basis:12% ;
+    flex-shrink: 0;
+    height: 1.6em;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+}
+.headerUser , .headerHeart{
+    flex-basis:4% ;
+}
+.headerUser > svg , .headerHeart > svg{
+    width: 2.8rem;
+    height: 2.8rem;
+}
+.headerFlag {
+    flex-basis:2.8rem ;
+}

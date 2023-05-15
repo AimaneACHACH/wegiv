@@ -1,0 +1,18 @@
+.footer{
+    padding: 2rem 3rem;
+    background: var(--light);
+    box-shadow: inset 0px 3px 4px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    gap: 2rem;
+}
+.footerApp{
+    flex-basis: 16rem;
+    display: flex;
+    gap: 1rem;
+    margin-right: auto
+}
+.footerHelp >a{
+    color: var(--text);
+}

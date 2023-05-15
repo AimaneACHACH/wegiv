@@ -1,0 +1,30 @@
+.articleList{
+    display: flex;
+    overflow: auto;
+    gap: 3rem;
+    width: 60rem;
+    padding-bottom: 1rem;
+}
+.articleListImg{
+    width: 14rem;
+    border-radius: 2rem;
+}
+.articleListImg > img{
+    border-radius: 1rem;
+}
+.articleListTitle{
+    font-size: smaller;
+    color: var(--mainColor);
+}
+.articleListInfo{
+    display: flex;
+    justify-content: space-between;
+    color: var(--textLight);
+    font-size: small;
+}
+.articleListDate , .articleListPlace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}

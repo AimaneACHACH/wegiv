@@ -1,0 +1,80 @@
+.login{
+    display: flex;
+    justify-content: center;
+    padding:5rem;
+    position:absolute;
+    top: 0;
+    left: 0;
+    background:var(--bg);
+    gap: 5rem;
+}
+.loginLeft , .loginRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.loginLeft{
+    flex-basis: 60rem;
+}
+.loginWegiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+}
+.loginCr{
+    color: var(--textLight);
+}
+.loginWegiv{
+    font-size: xx-large;
+    font-weight: 400;
+}
+.loginWegiv >img{
+    width: 7.5rem;
+}
+.loginText{
+    font-size: x-large;
+    text-align: center;
+    color: var(--textLight);
+    font-weight: 300;
+}
+.loginOptions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.loginLine{
+    color: var(--textLight);
+}
+.loginLine::after, .loginLine::before{
+    content: "";
+    display: inline-block;
+    border-top: 1px solid #000;
+    width: 10rem;
+    vertical-align: middle;
+    margin: 0 0.5em;
+}
+.loginLogin{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+.loginLogin > form{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    gap: 1rem;
+}
+.formElement >input{
+    width: 20rem;
+}
+.loginForget{
+    align-self: end;
+}
+.loginLogin > form > button{
+    width: 100%;
+}

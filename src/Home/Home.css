@@ -1,0 +1,44 @@
+.home{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center; 
+}
+.homeBigLogo{
+    padding-top: 4rem;
+    padding-left: 4rem;
+    flex-basis: 60%;
+}
+.homePages{
+    padding-top: 0.5rem;
+    flex-basis: 35.788%;
+}
+.homeOthers{
+    padding-left:4rem ;
+    width: 40rem;
+}
+.homeLogin{
+    display: grid;
+    padding-left: 18rem;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    
+}
+.homeLogin > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.homeLogin > div > .btn1{
+    width: 20rem;
+    text-align: center;
+}
+.homeLogin > div > .btn1 > svg{
+    margin-bottom: -0.2rem;
+}
+.homeLogin > .btn2{
+    width: 19.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}

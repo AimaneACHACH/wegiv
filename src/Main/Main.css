@@ -1,0 +1,19 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.mainSearch{
+    display: flex;
+    gap: 2rem;
+}
+.mainArticleTitle{
+    text-decoration: underline;
+    font-size: small;
+    text-align: left;
+    margin-left: -40rem;
+}

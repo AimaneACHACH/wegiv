@@ -1,0 +1,41 @@
+.search{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem;
+}
+.searchMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 3rem;
+    width: 60rem;
+    
+}
+.searchArticleImg{
+    width: 14rem;
+    border-radius: 2rem;
+}
+.searchArticleImg > img{
+    border-radius: 1rem;
+}
+.searchArticleTitle{
+    font-size: smaller;
+    color: var(--mainColor);
+}
+.searchArticleInfo{
+    display: flex;
+    justify-content: space-between;
+    color: var(--textLight);
+    font-size: small;
+}
+.searchArticleDate , .searchArticlePlace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
