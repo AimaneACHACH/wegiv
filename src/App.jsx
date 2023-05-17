@@ -1,8 +1,3 @@
-//hqrqwkan
-//mzyan hadchi
-//zidek hadi
-
-
 import {Routes,Route} from 'react-router-dom'
 import React from 'react'
 import Header from '../src/Header/Header'
