@@ -1,4 +1,6 @@
-import React from 'react'
+import React,{useEffect } from 'react'
+import { useNavigate  } from 'react-router-dom';
+import { auth } from '../firebase'
 import './Main.css'
 import {AiOutlineSearch} from 'react-icons/ai'
 import {TbCategory2} from 'react-icons/tb'
@@ -12,6 +14,25 @@ import ArticleList from '../ArticleList/ArticleList'
 
 
 const Main = ({dummyArticles}) => {
+
+
+  //return to home if not signed in
+  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+      } else {
+        // User is signed out
+        navigate('/');
+      }
+    });
+
+    // Clean up the observer when the component unmounts
+    return () => unsubscribe();
+  }, [navigate])
   return (
     <div className="main">
         <div className="mainSearch">

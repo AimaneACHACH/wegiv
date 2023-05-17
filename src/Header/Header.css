@@ -29,7 +29,7 @@
 .headerUser , .headerHeart{
     flex-basis:4% ;
 }
-.headerUser > svg , a > .headerHeart > svg{
+.headerUser >a> svg , a > .headerHeart > svg{
     width: 2.8rem;
     height: 2.8rem;
 }

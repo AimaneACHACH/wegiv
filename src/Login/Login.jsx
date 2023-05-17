@@ -70,7 +70,7 @@ const Login = () => {
             <form action="#" onSubmit={login}>
               <h4>E-mail</h4>
               <div className="formElement"><MdOutlineMail/><input type="email" name="email" placeholder='E-mail' value={email} onChange={(e) =>setEmail(e.target.value)} required /></div>
-              <h4>E-mail</h4>
+              <h4>Mot de passe</h4>
               <div className="formElement">
                 <RiLockPasswordLine/>
                 <input type={passwordVisible ? 'text' : 'password'} name="password" placeholder='Mot de passe' value={password} onChange={(e) =>setPassword(e.target.value)} required />

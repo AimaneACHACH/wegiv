@@ -1,4 +1,5 @@
 import React,{useState,useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 import './Header.css'
 import {auth} from '../firebase';
 import Logo from '../Assets/longLogo.png'
@@ -9,6 +10,8 @@ import Fr from '../Assets/fr.png'
 
 
 const Header = () => {
+  const location = useLocation();
+  const isInMain = location.pathname === '/Main';
   const [userImage, setUserImage] = useState('');
   const [logged,setLogged] = useState(false)
   useEffect(() => {
@@ -32,10 +35,10 @@ const Header = () => {
   return (
     <div className="header">
         <div className='headerLogo'><img src={Logo} alt="" /></div>
-        <div className="headerSpace"><div className="formElement"><AiOutlineSearch/><input type="text" placeholder='Chercher un article' /></div></div>
+        <div className="headerSpace">{!isInMain && <div className="formElement"><AiOutlineSearch/><input type="text" placeholder='Chercher un article' /></div>}</div> 
         {logged && <a href="/New" style={{ textDecoration: 'none' }}><div className="btn">Lister un article</div></a>}
         {!logged &&<a href="/Login" style={{ textDecoration: 'none' }}><div className="btn">Lister un article</div></a>}
-        <div className="headerUser">{logged &&<img src={userImage} alt="" />}{!logged &&<BsPersonCircle/>}</div>
+        <div className="headerUser">{logged &&<img src={userImage} alt="" />}{!logged && <a href="/Login"><BsPersonCircle/></a> }</div>
         {logged && <a href="" style={{ textDecoration: 'none' }}><div className="headerHeart"><AiFillHeart/></div></a>}
         <div className="headerFlag"><img src={Fr} alt="" /></div>
 

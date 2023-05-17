@@ -102,19 +102,38 @@ const dummyArticles = [
 
 
 /*--------------------------dummyArticle------------------------*/
+/*--------------------------dummyUser------------------------*/
+
+const dummyUser = {
+
+  "Id":"NVdOl24X2wFSraHorFJ",
+  "schoolName":"INPT",
+  "email":"Kacemsimo@gmail.com",
+  "gender":"M",
+  "firstName":"Simo",
+  "lastName":"Kacem",
+  "phoneNumber":"0668864646",
+  "adress":"Rabat",
+  "student":true,
+  "profilePic":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ptolemy_of_Mauretania_Louvre_Ma1887.jpg/800px-Ptolemy_of_Mauretania_Louvre_Ma1887.jpg",
+
+
+}
+
+/*--------------------------dummyUser------------------------*/
 
 const App = () => { 
   return (
     <div className="theWholePage">
       <Header/>
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/Article' element={<Article article={dummyArticles[0]} others={dummyArticles}/>}></Route>
-        <Route path='/Signup' element={<Signup/>}></Route>
-        <Route path='/New' element={<New/>}></Route>
-        <Route path='/Search' element={<Search result={dummyArticles}/>}></Route>
-        <Route path='/Main' element={<Main dummyArticles={dummyArticles}/>}></Route>
-        <Route path='/Login' element={<Login/>}></Route>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/Article' element={<Article article= {dummyArticles[0]}others={dummyArticles} />} />
+        <Route path='/Signup' element={<Signup/>}/>
+        <Route path='/New' element={<New/>}/>
+        <Route path='/Search' element={<Search result={dummyArticles}/>}/>
+        <Route path='/Main' element={<Main dummyArticles={dummyArticles}/>}/>
+        <Route path='/Login' element={<Login/>}/>
       </Routes>
     <Footer/>
     </div>

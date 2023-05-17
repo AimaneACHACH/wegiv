@@ -24,7 +24,7 @@ const Home = () => {
 
     // Clean up the observer when the component unmounts
     return () => unsubscribe();
-  }, [navigate]);
+  }, [navigate])
   return ( 
     <div className='home'>
         <div className="homeBigLogo"><img src={BigLogo} alt="" /></div>
