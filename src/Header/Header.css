@@ -17,7 +17,7 @@
     justify-content: center;
     flex-basis:50% ;
 }
-.header > .btn{
+.header >a> .btn{
     flex-basis:12% ;
     flex-shrink: 0;
     height: 1.6em;
@@ -29,9 +29,13 @@
 .headerUser , .headerHeart{
     flex-basis:4% ;
 }
-.headerUser > svg , .headerHeart > svg{
+.headerUser > svg , a > .headerHeart > svg{
     width: 2.8rem;
     height: 2.8rem;
+}
+.headerUser > img {
+    border-radius: 50%;
+    border: 3px solid var(--text);
 }
 .headerFlag {
     flex-basis:2.8rem ;

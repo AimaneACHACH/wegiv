@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
+import { useNavigate  } from 'react-router-dom';
 import './Login.css'
 import Slogan from '../Assets/slogan.png'
 import Logo from '../Assets/logo.png'
@@ -8,7 +9,7 @@ import {MdOutlineMail} from 'react-icons/md'
 import {RiLockPasswordLine} from 'react-icons/ri'
 import {AiOutlineEyeInvisible} from 'react-icons/ai'
 import {AiOutlineEye} from 'react-icons/ai'
-import { SignInGoogle } from '../firebase'
+import { SignInGoogle ,auth} from '../firebase'
 import { auth2 } from '../firebase'
 import { signInWithEmailAndPassword } from "firebase/auth"
 
@@ -32,7 +33,25 @@ const Login = () => {
       });
 
 
+
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        console.log('User is signed in');
+        navigate('/Main');
+      } else {
+        // User is signed out
+        console.log('User is signed out');
+      }
+    });
+
+    // Clean up the observer when the component unmounts
+    return () => unsubscribe();
+  }, [navigate]);
   return (
     <div className="login">
       <div className="loginLeft">
@@ -62,7 +81,7 @@ const Login = () => {
               <button type='submit' className='btn2'>Se connecter</button>
             </form>
           </div>
-          <div className="loginSignup">Pas encore inscrit ? <a href="https">S’inscrire gratuitement.</a></div>
+          <div className="loginSignup">Pas encore inscrit ? <a href="/Signup">S’inscrire gratuitement.</a></div>
           
       </div>
         

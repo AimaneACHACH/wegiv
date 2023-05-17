@@ -1,3 +1,4 @@
+import {Routes,Route} from 'react-router-dom'
 import React from 'react'
 import Header from '../src/Header/Header'
 import Home from './Home/Home'
@@ -8,6 +9,7 @@ import Main from './Main/Main'
 import Article from './Article/Article'
 import New from './New/New'
 import Search from './Search/Search'
+
 
 
 /*--------------------------dummyArticle------------------------*/
@@ -101,20 +103,19 @@ const dummyArticles = [
 
 /*--------------------------dummyArticle------------------------*/
 
-const App = () => {
+const App = () => { 
   return (
     <div className="theWholePage">
       <Header/>
-    {/*
-    <Login/>
-    <Article article={dummyArticles[0]} others={dummyArticles}/>
-    <Signup/>
-    <New/>
-    <Search result={dummyArticles}/>
-    <Main dummyArticles={dummyArticles}/>
-    
-    */}
-    <Home/>
+      <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/Article' element={<Article article={dummyArticles[0]} others={dummyArticles}/>}></Route>
+        <Route path='/Signup' element={<Signup/>}></Route>
+        <Route path='/New' element={<New/>}></Route>
+        <Route path='/Search' element={<Search result={dummyArticles}/>}></Route>
+        <Route path='/Main' element={<Main dummyArticles={dummyArticles}/>}></Route>
+        <Route path='/Login' element={<Login/>}></Route>
+      </Routes>
     <Footer/>
     </div>
 

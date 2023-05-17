@@ -36,9 +36,10 @@
 .homeLogin > div > .btn1 > svg{
     margin-bottom: -0.2rem;
 }
-.homeLogin > .btn2{
+.homeLogin >a>.btn2{
     width: 19.8rem;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
+    text-decoration: none;
 }
