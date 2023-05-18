@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import './Signup.css'
 import { useNavigate  } from 'react-router-dom';
 import {MdOutlineMail} from 'react-icons/md'
@@ -19,6 +19,22 @@ import { getDatabase, ref, push, set } from 'firebase/database';
 
 
 const Signup = () => {
+  const [logged,setLogged] = useState(false)
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setLogged(true);
+        // Perform any other actions you need to do for a signed-in user
+      } else {
+        setLogged(false);
+        // Perform any other actions you need to do for a signed-out user
+      }
+    });
+
+    // Clean up the observer when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
      const [nom, setNom] = useState('');
      const [prenom, setPrenom] = useState('');
      const [email, setEmail] = useState('');
@@ -125,19 +141,19 @@ const Signup = () => {
             setTelephone(e.target.value)}/></div>
                 </div>
             <div className="signupRight">
-                <h4>E-mail</h4>
-                <div className="formElement"><MdOutlineMail/><input type="email" name="email" placeholder='E-mail'value={email} onChange={(e) => setEmail( e.target.value)} required /></div>
+                {!logged && <h4>E-mail</h4>}
+                {!logged && <div className="formElement"><MdOutlineMail/><input type="email" name="email" placeholder='E-mail'value={email} onChange={(e) => setEmail( e.target.value)} required /></div>}
                 {active === 1 && <><h4>École / institut</h4>
                 <div className="formElement"><input type="text" name="school" placeholder='Saisir votre école / institut' value={ecole} onChange={(e)=>
             setEcole(e.target.value)}/></div></>}
                 <h4>Ville</h4>
                 <div className="formElement"><input type="text" name="city" placeholder='Ecrire votre Ville' value={ville}  onChange={(e)=>
             setVille(e.target.value)}/></div>
-                <h4>Mot de passe</h4>
-                <div className="formElement"><RiLockPasswordLine/>
+                {!logged && <h4>Mot de passe</h4>}
+                {!logged && <div className="formElement"><RiLockPasswordLine/>
                 <input type={passwordVisible ? 'text' : 'password'} name="password" placeholder='Mot de passe' value={motDePasse} onChange={(e) => setMotDePasse( e.target.value )}  required />
                 {passwordVisible ? (<AiOutlineEye onClick={togglePasswordVisibility} />) 
-                                : (<AiOutlineEyeInvisible onClick={togglePasswordVisibility} />)}</div>
+                                : (<AiOutlineEyeInvisible onClick={togglePasswordVisibility} />)}</div>}
                 <button type='submit' className='btn' onClick={handleSubmit} >Soumettre</button>
             </div>
             </form>
