@@ -12,6 +12,9 @@
     flex-shrink: 0;
     flex-basis:15% ;
 }
+.headerLogo{
+    cursor: pointer;
+}
 .headerSpace{
     display: flex;
     justify-content: center;

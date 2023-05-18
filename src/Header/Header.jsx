@@ -45,9 +45,12 @@ const Header = () => {
           console.log(error);
         });
     };
+    const handleLogoClick = () =>{
+      navigate('/');
+    }
   return (
     <div className="header">
-        <div className='headerLogo'><img src={Logo} alt="" /></div>
+        <div className='headerLogo' onClick={handleLogoClick}><img src={Logo} alt="" /></div>
         <div className="headerSpace">{!isInMain && <div className="formElement"><AiOutlineSearch/><input type="text" placeholder='Chercher un article' /></div>}</div> 
         {logged && <a href="/New" style={{ textDecoration: 'none' }}><div className="btn">Lister un article</div></a>}
         {!logged &&<a href="/Login" style={{ textDecoration: 'none' }}><div className="btn">Lister un article</div></a>}
