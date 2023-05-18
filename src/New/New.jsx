@@ -1,13 +1,55 @@
-import React,{useEffect } from 'react'
+import React,{useEffect,useState } from 'react'
 import { useNavigate  } from 'react-router-dom';
 import { auth } from '../firebase'
 import './New.css'
+import { getDatabase, ref, push, set } from 'firebase/database';
 
 const New = () => {
   //return to login when submit
   const navigate = useNavigate();
+  const [NomArticle, setNomArticle] = useState('');
+  const [ Adresse, setAdresse] = useState('');
+  const [Description, setDescription] = useState('');
+  const [date, setdate] = useState('');
+  const [categore, setcategore] = useState('');
+  const [Img, setImg] = useState('');
+  const handleliste = (e) => {
+    e.preventDefault();
 
+    // Créer une référence à la base de données
+    const db = getDatabase();
+    const dataRef = ref(db, 'Article');
 
+    // Générer une nouvelle clé unique pour les données
+    const newDataRef = push(dataRef);
+    const newArticleId = newDataRef.key;
+
+    // Enregistrer les données dans la base de données
+    const newData = {
+      Id: newArticleId,  
+      ArticleName: NomArticle,
+      Articlelocation: Adresse,
+      ArticleImg: Img,
+      Description: Description,
+      Date: date,
+      categore: categore,
+    };
+    set(newDataRef, newData)
+      .then(() => {
+        console.log('Données enregistrées avec succès !');
+        // Réinitialiser les champs du formulaire
+        setNomArticle('');
+        setAdresse('');
+        setDescription('');
+        setdate('');
+        setcategore('');
+        setImg('');
+      })
+      .catch((error) => {
+        console.log('Erreur lors de l enregistrement des données :', error);
+      });
+      handleSubmit ();
+  };
   const handleSubmit = () => {
     // Perform any necessary operations before navigating
 
@@ -36,12 +78,13 @@ const New = () => {
    <div className="new">
         <div className="newTitle"><h1>LISTER UN ARTICLE: </h1></div>
         <form action="submit" className='newInfo'>
-        <div className="newElement"><input type="text" placeholder='Nom d’article'onChange={(e)=>
-            setDetails({...details,NomArticle:e.target.value})} /></div>
-          <div className="newElement"><label for="img">Image d’article(.png,.jpeg)</label><input type="file" id="img" onChange={(e)=>
-            setDetails({...details,Img:e.target.value})} class="hidden"/></div>
+        <div className="newElement"><input type="text" value={NomArticle} placeholder='Nom d’article'onChange={(e)=>
+            setNomArticle(e.target.value)} /></div>
+          <div className="newElement"><label for="img">Image d’article(.png,.jpeg)</label><input type="file" id="img" value={Img} onChange={(e)=>
+            setImg(e.target.value)} class="hidden"/></div>
           <div className="newElement"><label for="type">Type d'article :</label>
-          <select name="type" id="type">
+          <select name="type" id="type" value={categore} onChange={(e)=>
+            setcategore(e.target.value)} >
           <option value="food">Nourritures</option>  
           <option value="cloth">Vêtements</option>  
           <option value="med">Médicaments</option>  
@@ -49,13 +92,13 @@ const New = () => {
           <option value="tech">Électronique</option>  
           <option value="other">Autres</option>  
           </select></div>
-          <div className="newElement"><input type="text" placeholder='Adresse' onChange={(e)=>
-            setDetails({...details,Adresse:e.target.value})}/></div>
-          <div className="newElement"><label htmlFor="date">Date limite</label><input type="date" onChange={(e)=>
-            setDetails({...details,date:e.target.value})}/></div>
-          <div className="newElement"><textarea name="description" cols="30" rows="10" placeholder='Description' onChange={(e)=>
-            setDetails({...details,Description:e.target.value})}></textarea></div>
-          <button className='btn' onClick={handleSubmit}>Soumettre</button>
+          <div className="newElement"><input type="text" placeholder='Adresse' value={Adresse} onChange={(e)=>
+            setAdresse(e.target.value)}/></div>
+          <div className="newElement"><label htmlFor="date">Date limite</label><input type="date"  value={date} onChange={(e)=>
+            setdate(e.target.value)}/></div>
+          <div className="newElement"><textarea name="description" cols="30" rows="10" placeholder='Description' value={Description} onChange={(e)=>
+            setDescription(e.target.value)}></textarea></div>
+          <button className='btn' onClick={handleliste }>Soumettre</button>
         </form>
    </div>
   )
