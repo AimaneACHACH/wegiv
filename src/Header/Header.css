@@ -29,9 +29,10 @@
 .headerUser , .headerHeart{
     flex-basis:4% ;
 }
-.headerUser >a> svg , a > .headerHeart > svg{
+.headerUser >a> svg , a > .headerHeart > svg,.headerLogout>svg{
     width: 2.8rem;
     height: 2.8rem;
+    cursor: pointer;
 }
 .headerUser > img {
     border-radius: 50%;

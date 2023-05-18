@@ -9,7 +9,7 @@ import Main from './Main/Main'
 import Article from './Article/Article'
 import New from './New/New'
 import Search from './Search/Search'
-
+import Profile from './Profile/Profile'
 
 
 /*--------------------------dummyArticle------------------------*/
@@ -23,6 +23,7 @@ import Img6 from './Assets/DummyArticles/meat.jpeg'
 import Img7 from './Assets/DummyArticles/food.jpg'
 import Img8 from './Assets/DummyArticles/pizza.jpg'
 import Img9 from './Assets/DummyArticles/soup.jpg'
+
 
 const dummyArticles = [
   {
@@ -115,8 +116,8 @@ const dummyUser = {
   "phoneNumber":"0668864646",
   "adress":"Rabat",
   "student":true,
-  "profilePic":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Ptolemy_of_Mauretania_Louvre_Ma1887.jpg/800px-Ptolemy_of_Mauretania_Louvre_Ma1887.jpg",
-
+  "profilePic":"https://www.thesun.ie/wp-content/uploads/sites/3/2020/08/NINTCHDBPICT000604076009.jpg?strip=all&quality=100&w=1080&h=1080&crop=1",
+  "articles": ["Jdk87JDkdH7e68Y","JKHL8Gf8F8FFY","HjhJ2Kh67IH7h","BJ4KJ24BVJ4HG634KvM"]
 
 }
 
@@ -132,6 +133,7 @@ const App = () => {
         <Route path='/Signup' element={<Signup/>}/>
         <Route path='/New' element={<New/>}/>
         <Route path='/Search' element={<Search result={dummyArticles}/>}/>
+        <Route path='/Profile' element={<Profile user={dummyUser}/>}/>
         <Route path='/Main' element={<Main dummyArticles={dummyArticles}/>}/>
         <Route path='/Login' element={<Login/>}/>
       </Routes>
