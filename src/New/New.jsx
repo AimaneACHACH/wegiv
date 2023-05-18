@@ -36,7 +36,7 @@ const New = () => {
    <div className="new">
         <div className="newTitle"><h1>LISTER UN ARTICLE: </h1></div>
         <form action="submit" className='newInfo'>
-          <div className="newElement"><input type="text" placeholder='Type d’article'/></div>
+          <div className="newElement"><input type="text" placeholder='Nom d’article'/></div>
           <div className="newElement"><label for="img">Image d’article(.png,.jpeg)</label><input type="file" id="img" class="hidden"/></div>
           <div className="newElement"><input type="text" placeholder='Adresse'/></div>
           <div className="newElement"><label htmlFor="date">Date limite</label><input type="date"/></div>
