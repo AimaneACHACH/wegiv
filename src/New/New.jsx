@@ -6,6 +6,38 @@ import './New.css'
 const New = () => {
   //return to login when submit
   const navigate = useNavigate();
+  const [details, setDetails] = useState({
+    NomArticle: '',
+    Img: '',
+    Adresse: '', 
+    date: '',
+    Description: '',
+    idArticle: '',
+   
+})
+
+  const PostData =async(e)=>{
+    e.preventDefault()
+
+    const{ NomArticle,Img,Adresse, date,Description}=details;
+
+   const res=await fetch("https://wegiv-1c9b2-default-rtdb.firebaseio.com/article.json",
+   {
+       method:'POST',
+       headers:{
+           'Content-Type':'application/json'
+       },
+       body:JSON.stringify({
+        NomArticle,
+        Img,
+        Adresse, 
+        date,
+        Description,
+       
+       })
+    })
+
+}
 
 
   const handleSubmit = () => {
@@ -13,6 +45,7 @@ const New = () => {
 
     // Navigate to the login page
     navigate('/Profile');
+    PostData(e);
   };
 
 
@@ -36,11 +69,16 @@ const New = () => {
    <div className="new">
         <div className="newTitle"><h1>LISTER UN ARTICLE: </h1></div>
         <form action="submit" className='newInfo'>
-          <div className="newElement"><input type="text" placeholder='Nom d’article'/></div>
-          <div className="newElement"><label for="img">Image d’article(.png,.jpeg)</label><input type="file" id="img" class="hidden"/></div>
-          <div className="newElement"><input type="text" placeholder='Adresse'/></div>
-          <div className="newElement"><label htmlFor="date">Date limite</label><input type="date"/></div>
-          <div className="newElement"><textarea name="description" cols="30" rows="10" placeholder='Description'></textarea></div>
+          <div className="newElement"><input type="text" placeholder='Nom d’article'onChange={(e)=>
+            setDetails({...details,NomArticle:e.target.value})} /></div>
+          <div className="newElement"><label for="img">Image d’article(.png,.jpeg)</label><input type="file" id="img" onChange={(e)=>
+            setDetails({...details,Img:e.target.value})} class="hidden"/></div>
+          <div className="newElement"><input type="text" placeholder='Adresse' onChange={(e)=>
+            setDetails({...details,Adresse:e.target.value})}/></div>
+          <div className="newElement"><label htmlFor="date">Date limite</label><input type="date" onChange={(e)=>
+            setDetails({...details,date:e.target.value})}/></div>
+          <div className="newElement"><textarea name="description" cols="30" rows="10" placeholder='Description' onChange={(e)=>
+            setDetails({...details,Description:e.target.value})}></textarea></div>
           <button className='btn' onClick={handleSubmit}>Soumettre</button>
         </form>
    </div>

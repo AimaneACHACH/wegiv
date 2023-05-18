@@ -22,6 +22,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 const Article = ({ article, others }) => {
+
     const [isLiked, setIsLiked] = useState(false);
     const handleIconClick = () => {
         setIsLiked(!isLiked);

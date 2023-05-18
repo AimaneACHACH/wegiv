@@ -83,7 +83,7 @@ const Signup = () => {
           .catch((error) => {
             console.log('Erreur lors de l enregistrement des données :', error);
           });
-          signUp(e);
+          signUp(e)
           navigate('/Main');
       };
 
@@ -138,7 +138,7 @@ const Signup = () => {
                 <input type={passwordVisible ? 'text' : 'password'} name="password" placeholder='Mot de passe' value={motDePasse} onChange={(e) => setMotDePasse( e.target.value )}  required />
                 {passwordVisible ? (<AiOutlineEye onClick={togglePasswordVisibility} />) 
                                 : (<AiOutlineEyeInvisible onClick={togglePasswordVisibility} />)}</div>
-                <button type='submit' className='btn' >Soumettre</button>
+                <button type='submit' className='btn' onClick={handleSubmit} >Soumettre</button>
             </div>
             </form>
         </div>
