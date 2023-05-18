@@ -14,6 +14,7 @@ import { getDatabase, ref, push, set } from 'firebase/database';
 
 
 
+
     
 
 
@@ -29,8 +30,7 @@ const Signup = () => {
      const [active, setActive] = useState(1);
      const navigate = useNavigate();
     const handleClick = (switchNum) => {setActive(switchNum);};
-   
-     
+    
     const signUp = (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, motDePasse)

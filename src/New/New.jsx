@@ -1,6 +1,7 @@
 import React,{useEffect,useState } from 'react'
 import { useNavigate  } from 'react-router-dom';
 import { auth } from '../firebase'
+import { getAuth } from 'firebase/auth';
 import './New.css'
 import { getDatabase, ref, push, set } from 'firebase/database';
 
@@ -44,12 +45,29 @@ const New = () => {
         setdate('');
         setcategore('');
         setImg('');
+        const user = getAuth().currentUser;
+        if (user) {
+          const userId = user.uid;
+          const userDb = ref(db, `User/${userId}`);
+          push(userDb, newArticleId)
+            .then(() => {
+              console.log('ID du produit ajouté à la liste de l\'utilisateur avec succès !');
+            })
+            .catch((error) => {
+              console.log('Erreur lors de l\'ajout de l\'ID du produit à la liste de l\'utilisateur :', error);
+            });
+        } else {
+          console.log('Utilisateur non connecté.');
+        }
+
+        handleSubmit();
       })
       .catch((error) => {
-        console.log('Erreur lors de l enregistrement des données :', error);
+        console.log('Erreur lors de l\'enregistrement des données :', error);
       });
-      handleSubmit ();
   };
+
+     
   const handleSubmit = () => {
     // Perform any necessary operations before navigating
 
