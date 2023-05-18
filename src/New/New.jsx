@@ -1,4 +1,4 @@
-import React,{useEffect } from 'react'
+import React,{useEffect , useState } from 'react'
 import { useNavigate  } from 'react-router-dom';
 import { auth } from '../firebase'
 import './New.css'
@@ -21,7 +21,7 @@ const New = () => {
 
     const{ NomArticle,Img,Adresse, date,Description}=details;
 
-   const res=await fetch("https://wegiv-1c9b2-default-rtdb.firebaseio.com/article.json",
+   const res=await fetch("https://wegiv-1c9b2-default-rtdb.firebaseio.com/wegiv.json",
    {
        method:'POST',
        headers:{
@@ -45,7 +45,7 @@ const New = () => {
 
     // Navigate to the login page
     navigate('/Profile');
-    PostData(e);
+    PostData();
   };
 
 
