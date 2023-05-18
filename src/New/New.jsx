@@ -38,6 +38,15 @@ const New = () => {
         <form action="submit" className='newInfo'>
           <div className="newElement"><input type="text" placeholder='Nom d’article'/></div>
           <div className="newElement"><label for="img">Image d’article(.png,.jpeg)</label><input type="file" id="img" class="hidden"/></div>
+          <div className="newElement"><label for="type">Type d'article :</label>
+          <select name="type" id="type">
+          <option value="food">Nourritures</option>  
+          <option value="cloth">Vêtements</option>  
+          <option value="med">Médicaments</option>  
+          <option value="tools">Outils</option>  
+          <option value="tech">Électronique</option>  
+          <option value="other">Autres</option>  
+          </select></div>
           <div className="newElement"><input type="text" placeholder='Adresse'/></div>
           <div className="newElement"><label htmlFor="date">Date limite</label><input type="date"/></div>
           <div className="newElement"><textarea name="description" cols="30" rows="10" placeholder='Description'></textarea></div>
