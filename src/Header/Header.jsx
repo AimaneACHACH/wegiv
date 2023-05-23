@@ -54,8 +54,15 @@ const Header = () => {
         <div className="headerSpace">{!isInMain && <div className="formElement"><AiOutlineSearch/><input type="text" placeholder='Chercher un article' /></div>}</div> 
         {logged && <a href="/New" style={{ textDecoration: 'none' }}><div className="btn">Lister un article</div></a>}
         {!logged &&<a href="/Login" style={{ textDecoration: 'none' }}><div className="btn">Lister un article</div></a>}
-        <div className="headerUser">{logged &&<img src={userImage} alt="" />}{!logged && <a href="/Login"><BsPersonCircle/></a> }</div>
-        {logged && <a href="" style={{ textDecoration: 'none' }}><div className="headerHeart"><AiFillHeart/></div></a>}
+        <div className="headerUser">
+  {logged && userImage ? (
+    <img src={userImage} alt="" />
+  ) : (
+    <a href="/Login">
+      <BsPersonCircle />
+    </a>
+  )}
+</div>
         <div className="headerFlag"><img src={Fr} alt="" /></div>
         {logged && <div className="headerLogout" onClick={handleLogout}><ImExit/></div>}
 
