@@ -10,7 +10,6 @@ import {RiLockPasswordLine} from 'react-icons/ri'
 import {AiOutlineEyeInvisible} from 'react-icons/ai'
 import {AiOutlineEye} from 'react-icons/ai'
 import { SignInGoogle ,auth} from '../firebase'
-import { auth2 } from '../firebase'
 import { signInWithEmailAndPassword } from "firebase/auth"
 
 
@@ -25,7 +24,7 @@ const Login = () => {
   };
   const login = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth2, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential);
       })

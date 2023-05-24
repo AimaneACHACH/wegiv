@@ -1,9 +1,7 @@
 
 import { initializeApp } from "firebase/app";
-import  {setUser } from "react";
 import { getAuth , GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getDatabase, ref, push, set } from 'firebase/database';
-import { UserCredential } from "firebase/auth";
 
 
 const firebaseConfig = {
@@ -19,8 +17,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const auth1 = getAuth(app);
-export const  auth2 = getAuth(app);
 
 
 const provider = new GoogleAuthProvider()

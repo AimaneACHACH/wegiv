@@ -21,7 +21,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const Article = ({ article, others }) => {
+const Article = ({ article }) => {
 
     const [isLiked, setIsLiked] = useState(false);
     const handleIconClick = () => {
@@ -84,7 +84,7 @@ const Article = ({ article, others }) => {
                     <div className="btn"><ImWhatsapp/>Numéro de téléphone</div>
         </div>
         <div className="articleOthers">
-            <ArticleList Articles={others}/>
+            <ArticleList/>
         </div>
     
     </div>

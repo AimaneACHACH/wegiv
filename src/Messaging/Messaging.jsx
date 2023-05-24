@@ -4,6 +4,8 @@ import { RiSendPlaneFill } from 'react-icons/ri';
 import User from '../Assets/DummyUser/photo.jpg';
 import Art from '../Assets/DummyArticle/1.jpg';
 
+
+
 const Messaging = () => {
   function autoResize() {
     const textarea = document.getElementById('myTextarea');

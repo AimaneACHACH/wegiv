@@ -125,12 +125,15 @@ const dummyUser = {
 /*--------------------------dummyUser------------------------*/
 
 const App = () => { 
+
+  
+
   return (
     <div className="theWholePage">
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/Article' element={<Article article= {dummyArticles[0]}others={dummyArticles} />} />
+        <Route path='/Article' element={<Article article= {dummyArticles[0]} />} />
         <Route path='/Signup' element={<Signup/>}/>
         <Route path='/New' element={<New/>}/>
         <Route path='/Search' element={<Search result={dummyArticles}/>}/>
