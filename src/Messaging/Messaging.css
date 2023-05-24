@@ -1,0 +1,62 @@
+.messaging{
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.messagingContact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.messagingImg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+}
+.messagingImg > img {
+    border-radius: 50%;
+    border: 4px solid var(--bg);
+    scale: 150%;
+}
+.messagingContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.messagingThem{
+    background: var(--mainColor);
+    color: var(--bg);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem 1rem 1rem 0rem;
+    margin-right: auto;
+}
+.messagingYou{
+    padding: 0.5rem 1rem;
+    border-radius: 1rem 1rem 0rem 1rem;
+    border: 2px solid var(--mainColor);
+    margin-left: auto;
+}
+.messagingInput{
+    padding: 0.5rem 1rem;
+    border-radius: 1rem 1rem 0rem 1rem;
+    border: 3px solid var(--mainColor);
+}
+.messagingInput > textarea {
+    width: 20rem;
+    font-size: large;
+}
+.messagingInput > svg {
+    color: var(--mainColor);
+    font-size: large;
+    margin-top: 0.5rem;
+    padding-left: 0.7rem;
+}

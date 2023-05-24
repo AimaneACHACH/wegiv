@@ -10,6 +10,7 @@ import Article from './Article/Article'
 import New from './New/New'
 import Search from './Search/Search'
 import Profile from './Profile/Profile'
+import Messaging from './Messaging/Messaging'
 
 
 /*--------------------------dummyArticle------------------------*/
@@ -134,8 +135,9 @@ const App = () => {
         <Route path='/New' element={<New/>}/>
         <Route path='/Search' element={<Search result={dummyArticles}/>}/>
         <Route path='/Profile' element={<Profile user={dummyUser}/>}/>
-        <Route path='/Main' element={<Main dummyArticles={dummyArticles}/>}/>
+        <Route path='/Messaging' element={<Main dummyArticles={dummyArticles}/>}/>
         <Route path='/Login' element={<Login/>}/>
+        <Route path='/Main' element={<Messaging/>}/>
       </Routes>
     <Footer/>
     </div>
