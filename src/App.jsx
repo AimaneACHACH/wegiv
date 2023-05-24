@@ -135,9 +135,9 @@ const App = () => {
         <Route path='/New' element={<New/>}/>
         <Route path='/Search' element={<Search result={dummyArticles}/>}/>
         <Route path='/Profile' element={<Profile user={dummyUser}/>}/>
-        <Route path='/Messaging' element={<Main dummyArticles={dummyArticles}/>}/>
+        <Route path='/Main' element={<Main dummyArticles={dummyArticles}/>}/>
         <Route path='/Login' element={<Login/>}/>
-        <Route path='/Main' element={<Messaging/>}/>
+        <Route path='/Messaging' element={<Messaging/>}/>
       </Routes>
     <Footer/>
     </div>
