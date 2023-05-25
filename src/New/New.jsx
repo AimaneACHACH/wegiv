@@ -110,6 +110,7 @@ const New = () => {
           <option value="tech">Électronique</option>  
           <option value="other">Autres</option>  
           </select></div>
+          <div className="newElement"><input type="number" placeholder="Attribuer des points à l'article"  /></div>
           <div className="newElement"><input type="text" placeholder='Adresse' value={Adresse} onChange={(e)=>
             setAdresse(e.target.value)}/></div>
           <div className="newElement"><label htmlFor="date">Date limite</label><input type="date"  value={date} onChange={(e)=>

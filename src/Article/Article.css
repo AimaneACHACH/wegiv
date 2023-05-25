@@ -31,10 +31,8 @@
     align-items: center;
     gap: 2rem;
 }
-.articleImgSwiper{
+.articleImg > img{
     border-radius: 2rem;
-}
-.articleImg{
     width: 30rem;
 }
 .articleInfo{

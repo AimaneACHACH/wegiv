@@ -1,4 +1,5 @@
-import React, {useState } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './Article.css'
 import {BsArrowLeft} from 'react-icons/bs'
 import {MdAccessTimeFilled} from 'react-icons/md'
@@ -9,19 +10,57 @@ import {RxShare1} from 'react-icons/rx'
 import {MdMessage} from 'react-icons/md'
 import {ImWhatsapp} from 'react-icons/im'
 import ArticleList from '../ArticleList/ArticleList'
-import User from '../Assets/DummyUser/photo.jpg'
+import 'firebase/storage';
+import { getDatabase, ref, query, orderByChild, equalTo, get,onValue } from "firebase/database";
 
-// import Swiper core and required modules
-import { Pagination , Navigation} from 'swiper';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+const Article = () => {
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+  const transformDateString = (dateTimeString) => {
+    if (!dateTimeString) {
+      return '';
+    }
+  
+    const [date, time] = dateTimeString.split('#');
+    if (!date || !time) {
+      return '';
+    }
+  
+    const [day, month, year] = date.split('/');
+    const [hours, minutes] = time.split(':');
+  
+    // Create a new Date object with the extracted values
+    const transformedDate = new Date(year, month - 1, day, hours, minutes);
+  
+    // Format the date using the toLocaleString method with the French locale
+    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    const formattedDate = transformedDate.toLocaleString('fr-FR', options);
+  
+    return formattedDate;
+  };
 
-const Article = ({ article }) => {
+
+  const { id } = useParams();
+  const [thisArticle, setThisArticle] = useState(null);
+  const db = getDatabase();
+
+  useEffect(() => {
+    const realId = id.slice(1);
+    const articleQuery = query(ref(db, '/Article'), orderByChild('id'), equalTo(realId));
+
+    get(articleQuery)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setThisArticle(snapshot.val());
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+      
 
     const [isLiked, setIsLiked] = useState(false);
     const handleIconClick = () => {
@@ -30,41 +69,28 @@ const Article = ({ article }) => {
   return (
     <div className="article">
         <div className="articleBack"><BsArrowLeft/>Retourner aux résultats</div>
-        <div className="articleTitle"><h1>Jeans usés propre</h1></div>
+        <div className="articleTitle"><h1>{thisArticle && Object.values(thisArticle)[0]?.title}</h1></div>
         <div className="articleArticle">
             <div className="articleArticleDetails">
                 <div className="articleImg">
-                    <Swiper className="articleImgSwiper"
-                    color='red'
-                    modules={[Navigation,Pagination]}
-                    spaceBetween={50}
-                    slidesPerView={1}
-                    navigation
-                    pagination={{ clickable: true }}>
-
-                        {article.img.map((image, index) => (
-                                <SwiperSlide className='articleSingleImage'>
-                                <img src={image} key={index} />
-                                </SwiperSlide>
-                                ))}                        
-
-                    </Swiper>
+                {thisArticle && Object.values(thisArticle)[0].id && <img src={"https://firebasestorage.googleapis.com/v0/b/wegiv-1c9b2.appspot.com/o/ArticleImages%2F"+Object.values(thisArticle)[0].id+"?alt=media&token=977ad328-9b8a-4b92-8fcd-0bbf42f0b545"} alt="" />}
                 </div>
                 <div className="articleInfo">
                     <div className="articleUser">
                         <h5>Listé par: </h5>
                         <div><h5>Naima Sekkat</h5>
-                        <img src={User} alt="" /></div>
+                        {thisArticle && Object.values(thisArticle)[0].publisher &&<img src={"https://firebasestorage.googleapis.com/v0/b/wegiv-1c9b2.appspot.com/o/ProfileImages%2F"+Object.values(thisArticle)[0].publisher+"?alt=media&token=b8c9718b-e668-4d72-ba3c-3a2d8f0fc257"} alt="" />}</div>
                     </div>
-                    <div className="articleDate"><MdAccessTimeFilled/><h5>Dans 2 jours</h5></div>
+                    <div className="articleDate"><MdAccessTimeFilled/>{thisArticle && Object.values(thisArticle)[0].publishingDate
+ && <h5> {transformDateString(Object.values(thisArticle)[0].publishingDate)} </h5>}</div>
                     <div className="articleDescription">
                         <h4>Description</h4>
-                        <p>des jeans mam7tajhomch so libghahom contactini 😊</p>
+                        <p>{thisArticle && Object.values(thisArticle)[0]?.description}</p>
                     </div>
                     <div className="aticlePlace">
                         <h4>Localisation</h4>
                         <small><RiHandCoinLine/><small>Proche de vous</small></small>
-                        <p>INPT, Av. Allal El Fassi, Rabat , we can't afford a map a drari , Google Maps API is paid 😞</p>
+                        <p>{thisArticle && Object.values(thisArticle)[0]?.location}</p>
                     </div>
                 </div>
             </div>

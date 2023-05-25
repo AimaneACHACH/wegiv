@@ -2,6 +2,8 @@ import React from 'react'
 import './ArticleList.css'
 import 'firebase/storage';
 import { useEffect, useState } from 'react';
+
+import { useNavigate  } from 'react-router-dom'
 import { getDatabase, ref, onValue } from 'firebase/database';
 import {MdAccessTimeFilled} from 'react-icons/md'
 import {MdLocationOn} from 'react-icons/md'
@@ -11,7 +13,8 @@ import {MdLocationOn} from 'react-icons/md'
 
 
 const ArticleList = () => {
-
+  
+  const navigate = useNavigate();
   const transformDateString = (dateTimeString) => {
     if (!dateTimeString) {
       return '';
@@ -54,10 +57,6 @@ const ArticleList = () => {
     };
   }, []);
 
-
-
-
-
   return (
 
 
@@ -66,6 +65,7 @@ const ArticleList = () => {
       
       
       {Object.values(articles).map(article => (
+        <a href={'/Article/:'+article.id} style={{ textDecoration: 'none' }}>
          <div className="articleListArticle" key={article.id}>
 
             <div className="articleListImg"><img src={"https://firebasestorage.googleapis.com/v0/b/wegiv-1c9b2.appspot.com/o/ArticleImages%2F" + article.id + "?alt=media&token=a5b5463b-1b4d-482b-b75f-63a7e8187cdb"} alt="" /></div>
@@ -75,7 +75,7 @@ const ArticleList = () => {
               <div className="articleListPlace"><MdLocationOn/>{article.location}</div>
             </div>
 
-        </div>
+        </div></a>
       ))}
     </div>
   )
