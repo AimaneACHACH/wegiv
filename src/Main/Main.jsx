@@ -13,7 +13,7 @@ import Things from '../Assets/things.png'
 import ArticleList from '../ArticleList/ArticleList'
 
 
-const Main = ({dummyArticles}) => {
+const Main = () => {
 
 
   //return to home if not signed in
@@ -48,7 +48,7 @@ const Main = ({dummyArticles}) => {
             <div className="mainCategorie"><img src={Things} alt="" /></div>
         </div>
         <div className="mainArticleTitle"><h2>Article proche de vous: </h2></div>
-        <ArticleList Articles={dummyArticles} />
+        <ArticleList/>
     </div>
   )
 }
