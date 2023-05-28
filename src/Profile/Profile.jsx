@@ -1,4 +1,14 @@
-import React from 'react'
+import React, { useState ,useEffect} from 'react'
+import { useParams , useNavigate } from 'react-router-dom';
+import {
+  onValue,
+  getDatabase,
+  ref,
+  query,
+  orderByChild,
+  equalTo,
+  get,
+} from 'firebase/database';
 import './Profile.css'
 import ArticleList from '../ArticleList/ArticleList'
 import {MdMessage} from 'react-icons/md'
@@ -8,112 +18,46 @@ import {ImLocation} from 'react-icons/im'
 import {BiPencil} from 'react-icons/bi'
 
 
-/*--------------------------dummyArticles------------------------*/
-
-import Img1 from '../Assets/DummyArticle/1.jpg'
-import Img2 from '../Assets/DummyArticle/2.jpg'
-import Img3 from '../Assets/DummyArticle/3.jpg'
-import Img4 from '../Assets/DummyArticles/pens.jpg'
-import Img5 from '../Assets/DummyArticles/jacket.jpg'
-import Img6 from '../Assets/DummyArticles/meat.jpeg'
-import Img7 from '../Assets/DummyArticles/food.jpg'
-import Img8 from '../Assets/DummyArticles/pizza.jpg'
-import Img9 from '../Assets/DummyArticles/soup.jpg'
+const Profile = () => {
 
 
-const listed = [
-  {
-    id:1,
-    img:[Img4,Img5,Img6],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img5,Img6,Img7],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img6,Img7,Img8],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img7,Img8,Img9],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img8,Img9,Img1],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img9,Img2,Img3],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img4,Img5,Img6],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img5,Img6,Img7],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img6,Img7,Img8],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img7,Img8,Img9],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img8,Img9,Img1],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },{
-    id:1,
-    img:[Img9,Img2,Img3],
-    title: 'Some article',
-    date: new Date('2022-05-01T00:00:00Z'),
-    place :'INPT'
-  },
-]
+  const { id } = useParams();
+  const [user,setUser]=useState(null)
+  const db = getDatabase();
+  useEffect(() => {
+    const userId = id.slice(1);
+    const userQuery = query(
+      ref(db, '/User'),
+      orderByChild('Id'),
+      equalTo(userId)
+    );
 
+    get(userQuery)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          setUser(snapshot.val());
+        } else {
+          console.log('No data available');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [db, id]);
 
-/*--------------------------dummyArticles------------------------*/
-
-const Profile = ({user}) => {
   return (
     <div className="profile">
         <div className="profileAcc">
         <div className="profilerImg">
-                   <img src={user.profilePic} alt="" />
+                   {user && <img src={"https://firebasestorage.googleapis.com/v0/b/wegiv-1c9b2.appspot.com/o/ProfileImages%2F"+Object.values(user)[0].Id+"?alt=media&token=d32cca22-426b-459b-9bef-8e4daf25f14e"} alt="" />}
         </div>
         <div className="profileInfo">
-            <div className="profileName"><h1>{user.firstName} {user.lastName}</h1><BiPencil/></div>          
-            <div className="profileSchool"><IoMdSchool/><h2>{user.schoolName}</h2></div>
-            <div className="profileAd"><ImLocation/><h2>{user.adress}</h2></div>
+            <div className="profileName"><h1>{user && Object.values(user)[0].lastName} {user && Object.values(user)[0].firstName}</h1><BiPencil/></div>          
+            <div className="profileSchool"><IoMdSchool/><h2>{user && Object.values(user)[0].schoolName}</h2></div>
+            <div className="profileAd"><ImLocation/><h2>{user && Object.values(user)[0].address}</h2></div>
             <div className="prodileContact">
-                <div className="btn"><MdMessage/>Contacter le GIVeur</div>
-                <div className="btn"><ImWhatsapp/>Numéro de téléphone</div>
+                {user && <a href={'/Messaging/:'+Object.values(user)[0].Id+'/:0'} style={{ textDecoration: 'none' }} className="btn"><MdMessage/>Contacter le GIVeur</a>}
+                {user && <a href={"https://wa.me/"+Object.values(user)[0].phoneNumber} className="btn" style={{ textDecoration: 'none' }}><ImWhatsapp/>Numéro de téléphone</a>}
             </div>
         </div>
         
@@ -121,7 +65,7 @@ const Profile = ({user}) => {
         
         <div className="profileArticles">
             <h2>Articles listé :</h2>
-            <ArticleList Articles={listed}/>
+            <ArticleList/>
         </div>
     </div>
   )

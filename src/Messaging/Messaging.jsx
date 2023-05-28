@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import './Messaging.css';
 import { RiSendPlaneFill } from 'react-icons/ri';
 import User from '../Assets/DummyUser/photo.jpg';
@@ -7,6 +8,7 @@ import Art from '../Assets/DummyArticle/1.jpg';
 
 
 const Messaging = () => {
+  const { id ,articleId } = useParams();
   function autoResize() {
     const textarea = document.getElementById('myTextarea');
     textarea.style.height = 'auto';
