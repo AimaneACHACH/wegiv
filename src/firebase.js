@@ -5,13 +5,13 @@ import { getDatabase, ref, push, set } from 'firebase/database';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDXMFCijSwJKx5hwbOd8z55XkmBYkmKgvs",
-  authDomain: "wegiv-1c9b2.firebaseapp.com",
-  projectId: "wegiv-1c9b2",
-  storageBucket: "wegiv-1c9b2.appspot.com",
-  messagingSenderId: "1089342959920",
-  appId: "1:1089342959920:web:2c0e8505949284488798f5",
-  measurementId: "G-NH1Z7WVQHD"
+  apiKey: "xxxxxxxxxx",
+  authDomain: "xxxxxxx",
+  projectId: "xxxxxxxxxx",
+  storageBucket: "xxxxxxxxxxxx",
+  messagingSenderId: "xxxxxxxxxx",
+  appId: "xxxxxxxxxxxxxxxxxxxxxxx",
+  measurementId: "xxxxxxxxxxxxxxx"
 };
 
 
